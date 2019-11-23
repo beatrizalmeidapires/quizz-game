@@ -1,11 +1,11 @@
-package org.academiadecodigo.thunderstructs;
+package org.academiadecodigo.thunderstructs.content;
 
 
 import java.util.HashMap;
 
 public class Questions {
 
-    HashMap<String, String> questions = new HashMap<>();
+    HashMap<String, String> questions = new HashMap();
 
     public static final String PORTUGAL = "What's the capital of Portugal?";
     public static final String UNITED_KINGDOM = "What's the capital of United Kingdom?";

@@ -25,9 +25,8 @@ public class Server {
             out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
         }
 
-        @Override
+        //@Override
         public void run() {
-
         }
     }
 }

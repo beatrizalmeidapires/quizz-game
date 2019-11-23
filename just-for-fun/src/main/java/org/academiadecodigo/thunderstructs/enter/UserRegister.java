@@ -1,25 +1,35 @@
-package org.academiadecodigo.thunderstructs;
+package org.academiadecodigo.thunderstructs.enter;
 
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
+import org.academiadecodigo.thunderstructs.Menu;
+
+import java.util.HashMap;
 
 public class UserRegister {
 
+    private HashMap<String, String> users;
     private boolean isValid;
     private String newUsername;
     private Login login;
-    private App app;
 
 
     public UserRegister() {
-        this.app = new App();
-        this.login = new Login();
+        this.login = new Login(this);
+        this.users = new HashMap();
     }
+
+    public void register() {
+        chooseUsername();
+        choosePassword();
+    }
+
 
     public void chooseUsername() {
         StringInputScanner scanner = new StringInputScanner();
         scanner.setMessage("Please choose a username: ");
         newUsername = login.getPrompt().getUserInput(scanner);
-        for (String username : app.getUsers().keySet()) {
+
+        for (String username : users.keySet()) {
 
             while (newUsername.equals(username)) {
                 System.out.println("Username already taken, please choose another one.");
@@ -27,15 +37,18 @@ public class UserRegister {
                 userScanner.setMessage("New Username: ");
                 newUsername = login.getPrompt().getUserInput(userScanner);
             }
-            System.out.println(newUsername + " is a valid username.");
         }
+        System.out.println(newUsername + " is a valid username.");
     }
 
+    //OK
     public void choosePassword() {
-        Menu menu = new Menu(app);
+        Menu menu = new Menu();
 
         StringInputScanner pass = new StringInputScanner();
+
         pass.setMessage("Please choose a password: ");
+
         String password = login.getPrompt().getUserInput(pass);
 
         while (!isValid) {
@@ -47,19 +60,28 @@ public class UserRegister {
                     continue;
                 }
 
-                System.out.println("Valid password: " + password + ". Thank you for register.");
+                System.out.println("Valid password: " + password + "\nThank you for register.");
                 isValid = true;
-                app.getUsers().put(newUsername, password);
+                users.put(newUsername, password);
                 menu.createMenu();
                 menu.menuChoice();
                 break;
             }
 
-            if(!isValid) {
+            if (!isValid) {
                 System.out.println("Invalid password. Your password must contain at least one number.");
                 pass.setMessage("Please choose a new password: ");
                 password = login.getPrompt().getUserInput(pass);
             }
         }
     }
+
+    public void insertUsers(String username, String password) {
+        users.put(username, password);
+    }
+
+    public HashMap<String, String> getUsers() {
+        return users;
+    }
+
 }

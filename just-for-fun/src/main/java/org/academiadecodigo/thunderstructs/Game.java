@@ -2,13 +2,14 @@ package org.academiadecodigo.thunderstructs;
 
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
+import org.academiadecodigo.thunderstructs.content.Questions;
 
 
 public class Game {
     private Prompt prompt = new Prompt(System.in, System.out);
 
 
-    public void start() {
+    public void init() {
         int points = 0;
         int wrongAnswers = 0;
 
