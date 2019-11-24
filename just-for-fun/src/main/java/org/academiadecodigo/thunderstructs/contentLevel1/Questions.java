@@ -1,11 +1,11 @@
-package org.academiadecodigo.thunderstructs.content;
+package org.academiadecodigo.thunderstructs.contentLevel1;
 
 
 import java.util.HashMap;
 
 public class Questions {
 
-    HashMap<String, String> questions = new HashMap();
+    public static HashMap<String, String> questions = new HashMap();
 
     public static final String PORTUGAL = "What's the capital of Portugal?";
     public static final String UNITED_KINGDOM = "What's the capital of United Kingdom?";
@@ -17,7 +17,7 @@ public class Questions {
     public static final String GREECE = "What's the capital of Greece?";
     public static final String NETHERLANDS = "What's the capital of Netherlands?";
 
-    public void addQuestions() {
+    public static void addQuestions() {
 
         questions.put(Questions.PORTUGAL, Answers.LISBON_ANSWER);
         questions.put(Questions.UNITED_KINGDOM, Answers.LONDON_ANSWER);
@@ -30,7 +30,7 @@ public class Questions {
         questions.put(Questions.SWITZERLAND, Answers.ZURICH_ANSWER);
     }
 
-    public HashMap<String, String> getQuestions() {
+    public static HashMap<String, String> getQuestions() {
         return questions;
     }
 }

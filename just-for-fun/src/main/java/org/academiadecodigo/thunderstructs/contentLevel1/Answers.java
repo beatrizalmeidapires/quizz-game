@@ -1,4 +1,4 @@
-package org.academiadecodigo.thunderstructs.content;
+package org.academiadecodigo.thunderstructs.contentLevel1;
 
 public class Answers {
 

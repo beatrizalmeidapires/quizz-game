@@ -24,7 +24,6 @@ public class Menu {
         menuChoice();
     }
 
-
     public void initialMenu() {
         String[] options = {"Register", "Login"};
         MenuInputScanner menu = new MenuInputScanner(options);
@@ -107,10 +106,11 @@ public class Menu {
                 break;
             case 3:
                 System.exit(1);
+                break;
         }
     }
 
-    public void threadSleep(int seconds){
+    public static void threadSleep(int seconds){
         try {
             Thread.sleep(seconds);
         } catch (InterruptedException e) {

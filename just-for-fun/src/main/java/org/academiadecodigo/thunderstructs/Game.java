@@ -2,26 +2,36 @@ package org.academiadecodigo.thunderstructs;
 
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
-import org.academiadecodigo.thunderstructs.content.Questions;
+import org.academiadecodigo.thunderstructs.contentLevel1.Questions;
 
 
 public class Game {
+
     private Prompt prompt = new Prompt(System.in, System.out);
+    private int points;
+    private int wrongAnswers;
+    private int questionsCounter;
+
+    public Game() {
+        this.points = 0;
+        this.wrongAnswers = 0;
+    }
 
 
     public void init() {
-        int points = 0;
-        int wrongAnswers = 0;
 
-        Questions questions = new Questions();
-        questions.addQuestions();
+        Questions.addQuestions();
 
-        for (String string : questions.getQuestions().keySet()) {
+        MyThread myThread = new MyThread();
+        myThread.start();
+
+        for (String string : Questions.getQuestions().keySet()) {
             StringInputScanner scanner = new StringInputScanner();
-            scanner.setMessage(string);
+            scanner.setMessage("\n".concat(string));
+            questionsCounter++;
             String answer = prompt.getUserInput(scanner);
 
-            if (answer.equals(questions.getQuestions().get(string))) {
+            if (answer.equals(Questions.getQuestions().get(string))) {
                 System.out.println("Well done! 1 point");
                 points++;
             } else {
@@ -29,29 +39,26 @@ public class Game {
                 wrongAnswers++;
             }
         }
-        System.out.println("********************* End of game ********************* \n Total questions: " + questions.getQuestions().keySet().size() + "\n Your score: " + points + "\n Wrong answers: " + wrongAnswers);
     }
 
 
+    private class MyThread extends Thread {
 
-       /* Frame frame = new Frame();
-        frame.setSize(1024,760);
-        frame.setVisible(true);
+        public void time() {
+            for (int i = 0; i < 20; i++) {
+                Menu.threadSleep(1000);
+                if (i == 19) {
+                    System.out.println("\n \n********************* TIME OUT ********************* \n \n Total questions answered: " + questionsCounter + "\n Your score: " + points + "\n Wrong answers: " + wrongAnswers);
+                    System.exit(1);
+                }
+            }
+        }
 
-        addQuestions();
-
-        Font myFont = new Font("Serif",Font.BOLD,60);
-        Label questionLabel = new Label(Messages.LISBON);
-        questionLabel.setFont(myFont);
-        questionLabel.setBounds(0,0,500,60);
-        frame.add(questionLabel);
-
-        Button answer1 = new Button("resposta");
-        answer1.setBounds(0, 80, 120,60);
-        frame.add(answer1);*/
-
-
-
+        @Override
+        public void run() {
+            time();
+        }
+    }
 }
 
 

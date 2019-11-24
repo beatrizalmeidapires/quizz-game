@@ -60,7 +60,6 @@ public class Login {
 
             if (username.equals(user)) {
                 userExist = true;
-                System.out.println("cheguei aqui");
                 break;
             }
 
